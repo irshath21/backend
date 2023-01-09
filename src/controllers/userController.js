@@ -1,5 +1,4 @@
 
-const { options } = require("../..")
 const User = require("../models/userModel")
 const sendToken = require("../utilities/sendToken")
 const cloudinary = require("cloudinary")
