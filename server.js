@@ -2,7 +2,8 @@
 const app = require("./index")
 const connect = require("./src/configs/db")
 const cloudinary = require("cloudinary")
-
+const dotenv = require("dotenv")
+dotenv.config()
 
 
 cloudinary.config({
