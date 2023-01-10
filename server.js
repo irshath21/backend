@@ -5,13 +5,16 @@ const cloudinary = require("cloudinary")
 const dotenv = require("dotenv")
 dotenv.config()
 
+const port = process.env.PORT || 3333
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key:process.env.CLOUDINARY_API_KEY,
     api_secret:process.env.CLOUDINARY_API_SECRET
 })
-app.listen(3333,async() => {
+
+app.listen(port,async() => {
     await connect().then(()=> {
         console.log("db is connected")
 
