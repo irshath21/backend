@@ -11,13 +11,14 @@
  const dotenv = require("dotenv")
  const errorMiddleware = require("./src/middleware/error")
  const path = require("path")
-
+ var cors = require('cors');
  dotenv.config()
  app.use(express.json())
  app.use(cookieParser())
  app.use(bodyParser.urlencoded({extended:true}))
  app.use(errorMiddleware)
  app.use(fileUpload())
+ app.use(cors({origin: true, credentials: true}));
  
  app.get("/", async(req,res) => {
   res.send("Hello")
