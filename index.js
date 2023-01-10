@@ -19,7 +19,10 @@
  app.use(errorMiddleware)
  app.use(fileUpload())
  
- 
+ app.get("/", async(req,res) => {
+  res.send("Hello")
+ })
+
 
  app.use("/irshath-e-commerce-store", productRoute)
  app.use("/irshath-e-commerce-store", userRoute)
