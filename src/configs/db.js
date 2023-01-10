@@ -4,8 +4,10 @@ const dotenv = require("dotenv")
 
 dotenv.config()
 
+const url = process.env.MONGO_URL
+
 const connect = () => {
-    return mongoose.connect(process.env.MONGO_URL)
+    return mongoose.connect(url)
 }
 
 module.exports = connect;
