@@ -13,11 +13,9 @@ const sendToken = (user, statusCode, res) => {
             // Date.now() is present day + 5 *24 *60*60*1000
             // converting into the milliseconds for the date
         ),
-        domain:"https://full-stack-e-commerce-webiste.vercel.app/",
-        path: '/',
+       
         httpOnly: true,
-        secure: env.ENVIRONMENT === 'LIVE',
-        sameSite: env.ENVIRONMENT === 'LIVE' ? 'none' : 'lax'
+       
         
     }
 
