@@ -21,7 +21,8 @@
  app.use(cors({origin: "*"}));
  
  app.get("/", async(req,res) => {
-  res.send("Hello", `${process.env.SECRET_KEY}`)
+    const data = await `${process.env.SECRET_KEY}`
+  res.send("Hello", data)
  })
 
 
