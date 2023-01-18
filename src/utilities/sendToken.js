@@ -13,10 +13,10 @@ const sendToken = (user, statusCode, res) => {
             // Date.now() is present day + 5 *24 *60*60*1000
             // converting into the milliseconds for the date
         ),
-        httpOnly:true,
-        secure:true,
+        domain:"*",
         path:"/",
-        domain:"*"
+        httpOnly:true,
+        
     }
 
     res.status(statusCode).cookie("token", token, options).json({
