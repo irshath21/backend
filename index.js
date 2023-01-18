@@ -18,7 +18,7 @@
  app.use(bodyParser.urlencoded({extended:true}))
  app.use(errorMiddleware)
  app.use(fileUpload())
- app.use(cors({origin: "https://full-stack-e-commerce-webiste.vercel.app/"}));
+ app.use(cors({origin: "https://full-stack-e-commerce-webiste.vercel.app"}));
  
  app.get("/", async(req,res) => {
   res.send("Hello")
