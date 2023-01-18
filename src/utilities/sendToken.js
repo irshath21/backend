@@ -16,8 +16,8 @@ const sendToken = (user, statusCode, res) => {
         domain:"https://full-stack-e-commerce-webiste.vercel.app/",
         path: '/',
         httpOnly: true,
-        secure: true,
-        sameSite: 'strict'
+        secure: env.ENVIRONMENT === 'LIVE',
+        sameSite: env.ENVIRONMENT === 'LIVE' ? 'none' : 'lax'
         
     }
 
