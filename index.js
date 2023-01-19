@@ -11,8 +11,10 @@
  const dotenv = require("dotenv")
  const errorMiddleware = require("./src/middleware/error")
  const path = require("path")
- var cors = require('cors');
- dotenv.config()
+ const cors = require('cors');
+ if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
  app.use(express.json())
  app.use(cookieParser())
  app.use(bodyParser.urlencoded({extended:true}))
