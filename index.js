@@ -15,17 +15,7 @@
  if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
   }
-  app.use(cors({
-   origin: "*",  
-   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-   allowedHeaders: ["Content-Type", "Authorization"],
-   credentials: true
-}));
-
-app.use(function (req, res, next) {
-   res.setHeader("Access-Control-Allow-Credentials", true);
-   return next();
-});
+app.use(cors());
 
 
  app.use(express.json())
