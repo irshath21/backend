@@ -13,7 +13,7 @@
  const path = require("path")
  const cors = require('cors');
  if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
+    dotenv.config();
   }
   app.use(cors({
     origin: '*'
