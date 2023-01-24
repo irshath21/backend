@@ -4,10 +4,7 @@
  const bodyParser = require("body-parser")
  const fileUpload = require("express-fileupload")
  const cookieParser = require("cookie-parser")
- const productRoute = require("./src/routes/productRoute")
- const userRoute = require("./src/routes/userRoute")
- const orderRoute = require("./src/routes/orderRoute")
- const paymentRoute = require("./src/routes/paymentRoute")
+
  const dotenv = require("dotenv")
  const errorMiddleware = require("./src/middleware/error")
  const path = require("path")
@@ -28,6 +25,11 @@
    
   res.send("Hello")
  })
+
+ const productRoute = require("./src/routes/productRoute")
+ const userRoute = require("./src/routes/userRoute")
+ const orderRoute = require("./src/routes/orderRoute")
+ const paymentRoute = require("./src/routes/paymentRoute")
 
 
 //  12:47 old man and his wife came
