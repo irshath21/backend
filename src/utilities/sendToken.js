@@ -15,8 +15,6 @@ const sendToken = (user, statusCode, res) => {
             // converting into the milliseconds for the date
         ),
        httpOnly:true,
-       secure:true
-       
        
     }
 
