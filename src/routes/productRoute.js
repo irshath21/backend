@@ -16,7 +16,7 @@ const { createProduct, getAllProducts, getProductDetails, updateProduct
 const { isAuthencticatedUser ,authorizeRoles} = require("../middleware/auth")
 
 
-router.route("/products").get(getAllProducts)
+router.route("/admin/products").get(getAllProducts)
 
 router.route("/admin/products").get(isAuthencticatedUser, authorizeRoles("admin"), getAdminProducts)
 
