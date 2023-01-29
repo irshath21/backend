@@ -16,8 +16,6 @@ exports.registerUser = async (req, res, next) => {
 
         })
 
-
-
         const { name, email, password } = req.body
 
         const user = await User.create(
@@ -36,7 +34,7 @@ exports.registerUser = async (req, res, next) => {
     }
     catch (error) {
         console.log(error.message)
-        return res.status(500).json({ success:false, error: error.message })
+        return res.status(500).json({ success:false, message: error.message })
     }
 
 }
@@ -70,7 +68,7 @@ exports.loginUser = async (req, res, next) => {
         sendToken(user, 200, res)
     }
     catch (error) {
-        return res.status(500).json({ success:false, success:false,  message:error.message })
+        return res.status(500).json({ success:false,   message:error.message })
     }
 
 }
