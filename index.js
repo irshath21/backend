@@ -8,14 +8,14 @@
  const dotenv = require("dotenv")
  const errorMiddleware = require("./src/middleware/error")
  const path = require("path")
- const cors = require('cors');
+ const cors = require('cors')
 
  if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
   }
  app.use(express.json())
  app.use(cookieParser())
- app.use(cors());
+ app.use(cors())
  app.use(bodyParser.urlencoded({extended:true}))
  app.use(fileUpload())
  
