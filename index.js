@@ -29,9 +29,6 @@
  const orderRoute = require("./src/routes/orderRoute")
  const paymentRoute = require("./src/routes/paymentRoute")
 
-
-
-
  app.use("/irshath-e-commerce-store", productRoute)
  app.use("/irshath-e-commerce-store", userRoute)
  app.use("/irshath-e-commerce-store", orderRoute)
