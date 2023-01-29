@@ -13,8 +13,8 @@
     dotenv.config();
   }
 app.use(cors({
-  origin: '*',
-  credentials: true
+  origin: '*'
+ 
 }));
  app.use(express.json())
  app.use(cookieParser())
