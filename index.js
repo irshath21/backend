@@ -13,7 +13,8 @@
  if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
   }
- app.use(cors()) 
+ app.use(cors( {origin: 'https://full-stack-e-commerce-webiste.vercel.app',
+ credentials: true})) 
  app.use(express.json())
  app.use(cookieParser())
  app.use(bodyParser.urlencoded({extended:true}))
