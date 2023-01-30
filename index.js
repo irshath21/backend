@@ -28,6 +28,7 @@
  const userRoute = require("./src/routes/userRoute")
  const orderRoute = require("./src/routes/orderRoute")
  const paymentRoute = require("./src/routes/paymentRoute")
+ app.use(errorMiddleware)
 
  app.use("/irshath-e-commerce-store", productRoute)
  app.use("/irshath-e-commerce-store", userRoute)
