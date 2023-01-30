@@ -14,6 +14,8 @@ const sendToken = (user, statusCode, res) => {
             // Date.now() is present day + 5 *24 *60*60*1000
             // converting into the milliseconds for the date
         ),
+        httpOnly:true,
+        secure:true
      
        
     }
