@@ -1,9 +1,12 @@
 
 const User = require("../models/userModel")
-const sendToken = require("../utilities/sendToken")
+// const sendToken = require("../utilities/sendToken")
 const cloudinary = require("cloudinary")
+const jwt = require("jsonwebtoken")
 
 // register a user
+
+const createToken = (user) => jwt.sign({ user }, process.env.JWT_SECRET);
 
 exports.registerUser = async (req, res, next) => {
 
@@ -29,8 +32,9 @@ exports.registerUser = async (req, res, next) => {
                 }
             }
         )
-        console.log(user)
-        sendToken(user, 201, res)
+        const token = createToken(user);
+
+        return res.status(201).json({ user, token });
     }
     catch (error) {
         console.log(error.message)
@@ -65,7 +69,9 @@ exports.loginUser = async (req, res, next) => {
             })
         }
 
-        sendToken(user, 200, res)
+        const token = createToken(user)
+
+        return res.status(201).json({ user, token });
     }
     catch (error) {
         return res.status(500).json({ success:false,   message:error.message })
