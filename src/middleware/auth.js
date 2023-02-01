@@ -1,22 +1,40 @@
 const jwt = require("jsonwebtoken")
 const User = require("../models/userModel")
 
+const verifyToken = (token) =>  {
+    return jwt.verify(token, process.env.JWT_SECRET)
+}
+
 
 exports.isAuthencticatedUser = async(req,res,next) => {
 
-    const {token} = req.cookies
-    // console.log(token)
-    if(!token) {
-       return res.status(401).json({
-            message:"please login to access the feature"
-        })
+   try {
+    const bearerToken = req?.headers?.authorization
+
+    if (!bearerToken || !bearerToken.startsWith('Bearer ')) {
+        return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
     }
 
-    const decodedData = jwt.verify(token,process.env.JWT_SECRET)
-    // console.log(decodedData)
+    const token = bearerToken.split(" ")[1];
+    let user;
+    try {
+        user = verifyToken(token);
+    } catch (e) {
+        return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
+    }
 
-   req.user = await User.findById(decodedData.id)
-   next()
+    if (!user) {
+        return res.status(400).json({ message: 'User not found', status: 'Failed' });
+    }
+
+    req.user = user.user;
+
+    return next();
+    
+   } catch (error) {
+    return res.status(500).json({ message: error.message, status: 'Failed' });
+   }
+   
 
 }
 
