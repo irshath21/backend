@@ -33,7 +33,7 @@ exports.registerUser = async (req, res, next) => {
             }
         )
         const token = createToken(user);
-        localStorage.setItem("token", token);
+       
 
         return res.status(201).json({ user, token });
     }
@@ -71,7 +71,6 @@ exports.loginUser = async (req, res, next) => {
         }
 
         const token = createToken(user)
-        localStorage.setItem("token", token);
         return res.status(201).json({ user, token });
     }
     catch (error) {
@@ -83,9 +82,6 @@ exports.loginUser = async (req, res, next) => {
 
 exports.logout = async (req, res) => {
 
-
-
-    localStorage.removeItem("token");
     // making token null and expiring now
 
     res.status(200).json({
@@ -217,7 +213,7 @@ exports.updatePassword = async (req, res) => {
         user.password = req.body.newPassword
         await user.save()
         const token = createToken(user);
-        localStorage.setItem("token", token);
+     
 
         return res.status(201).json({ user, token });
 
