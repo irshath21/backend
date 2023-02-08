@@ -82,6 +82,9 @@ exports.loginUser = async (req, res, next) => {
 
 exports.logout = async (req, res) => {
 
+
+
+   
     // making token null and expiring now
 
     res.status(200).json({
