@@ -6,37 +6,38 @@ const verifyToken = (token) =>  {
 }
 
 
-exports.isAuthencticatedUser = async(req,res,next) => {
+exports.isAuthencticatedUser = (req, res, next) => {
 
-   try {
-    const bearerToken = req?.headers?.authorization
-
-    if (!bearerToken || !bearerToken.startsWith('Bearer ')) {
-        return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
-    }
-
-    const token = bearerToken.split(" ")[1];
-    let user;
     try {
-        user = verifyToken(token);
+        const bearerToken = req?.headers?.authorization;
+
+        if (!bearerToken || !bearerToken.startsWith('Bearer ')) {
+            return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
+        }
+
+        const token = bearerToken.split(" ")[1];
+
+        let user;
+        try {
+            user = verifyToken(token);
+        } catch (e) {
+            return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
+        }
+
+        if (!user) {
+            return res.status(400).json({ message: 'User not found', status: 'Failed' });
+        }
+
+        req.user = user.user;
+
+        return next();
+
     } catch (e) {
-        return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
+        return res.status(500).json({ message: e.message, status: 'Failed' });
     }
+};
 
-    if (!user) {
-        return res.status(400).json({ message: 'User not found', status: 'Failed' });
-    }
 
-    req.user = user.user;
-
-    return next();
-    
-   } catch (error) {
-    return res.status(500).json({ message: error.message, status: 'Failed' });
-   }
-   
-
-}
 
 exports.authorizeRoles = (...roles) => {
     return (req,res,next) => {
