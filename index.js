@@ -13,6 +13,8 @@
  if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
   }
+
+  app.use(bodyParser.urlencoded({extended:true}))
   app.use(cors({
     origin: ['https://full-stack-e-commerce-webiste.vercel.app', "http://localhost:3000"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -23,7 +25,6 @@
 
  app.use(express.json())
  app.use(cookieParser())
- app.use(bodyParser.urlencoded({extended:true}))
  app.use(fileUpload())
  
  app.get("/", async(req,res) => {
