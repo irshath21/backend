@@ -197,7 +197,7 @@ exports.updatePassword = async (req, res) => {
         const user = await User.findById(req.user.id).select("+password")
         
         if(!user){
-        return res.status(201).json({ message:"user not found"});
+        return res.status(201).json({  success: false, message:"user not found"});
 
         }
 
