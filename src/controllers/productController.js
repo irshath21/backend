@@ -235,7 +235,7 @@ exports.createProduct = async(req,res) => {
         req.body.images = imagesLinks
         req.body.user = req.user.id
 
-        const product = await Product.create(req.body)
+        const product = new Product(req.body)
         res.status(201).json({success:true, product})
     }
     catch(error) {
