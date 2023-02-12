@@ -24,7 +24,10 @@ exports.isAuthencticatedUser = (req, res, next) => {
             return res.status(400).json({ message: 'Please provide a valid token', status: 'Failed' });
         }
 
-      
+        if (!user) {
+            return res.status(400).json({ message: 'User not found', status: 'Failed' });
+        }
+
         req.user = user.user;
 
         next();
