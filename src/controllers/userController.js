@@ -173,7 +173,9 @@ exports.resetPassword = async (req, res, next) => {
 // GET  user details
 exports.getUserDetails = async (req, res) => {
     try {
-        const user = await User.findById(req.user.id)
+        const user = await User.findById(req.user._id)
+
+        
 
         return res.status(200).json({
             success: true,
@@ -194,8 +196,8 @@ exports.getUserDetails = async (req, res) => {
 exports.updatePassword = async (req, res) => {
 
     try {
-        const user = await User.findById(req.user.id).select("+password")
-        
+        const user = await User.findById(req.user._id).select("+password")
+        console.log(req.user)
         if(!user){
         return res.status(201).json({  success: false, message:"user not found"});
 
@@ -224,7 +226,7 @@ exports.updatePassword = async (req, res) => {
         const token = createToken(user);
      
 
-        return res.status(201).json({ user, token });
+        return res.status(200).json({ success:true, user, token });
 
     }
     catch (error) {
@@ -244,7 +246,7 @@ exports.updateProfile = async (req, res) => {
     }
 
     if (req.body.avatar !== "") {
-        const user = await User.findById(req.user.id);
+        const user = await User.findById(req.user._id);
     
         const imageId = user.avatar.public_id;
     
@@ -262,18 +264,18 @@ exports.updateProfile = async (req, res) => {
         };
       }
     
-      const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+      const user = await User.findByIdAndUpdate(req.user._id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: false,
       });
     
       res.status(200).json({
-        success: true,
+        success: true
       });
     }
     catch(error){
-        res.status(200).json({
+        res.status(500).json({
             success: false, message:error.message
         });
     }
