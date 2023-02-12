@@ -14,7 +14,6 @@
     dotenv.config();
   }
 
-  app.use(bodyParser.urlencoded({extended:true}))
   app.use(cors({
     origin: ['https://full-stack-e-commerce-webiste.vercel.app', "http://localhost:3000"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -24,6 +23,8 @@
   
 
  app.use(express.json())
+ app.use(bodyParser.urlencoded({extended:true}))
+
  app.use(cookieParser())
  app.use(fileUpload())
  
