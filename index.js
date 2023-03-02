@@ -15,7 +15,7 @@
   }
 
   app.use(cors({
-    origin: ['https://full-stack-e-commerce-webiste.vercel.app', "http://localhost:3000"],
+    origin: ['https://full-stack-e-commerce-webiste.vercel.app', "http://localhost:3000", "https://e-commerce-backend-q5yg.onrender.com"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie']
